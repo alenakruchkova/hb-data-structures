@@ -22,12 +22,11 @@ def unique_houses(filename):
     for line in the_file:
         line = line.rstrip()
         data = line.split("|")
-        print data
+        
+        if data[2] != "":
+            houses.add(data[2])
 
-    # if data[2] != "":
-    #     houses.add(data[2])
-
-    # return houses
+    return houses
 
 
 
