@@ -1,39 +1,39 @@
-def unique_houses(filename):
-    """TODO: Create a set of student houses.
+# def unique_houses(filename):
+#     """TODO: Create a set of student houses.
 
-    Iterates over the cohort_data.txt file to look for all of the included house names
-    and creates a set called 'houses' that holds those names.
+#     Iterates over the cohort_data.txt file to look for all of the included house names
+#     and creates a set called 'houses' that holds those names.
 
-        ex. houses = set([ "Hufflepuff",
-                    "Slytherin",
-                    "Ravenclaw",
-                    "Gryffindor",
-                    "Dumbledore's Army",
-                    "Order of the Phoenix"
-            ])
+#         ex. houses = set([ "Hufflepuff",
+#                     "Slytherin",
+#                     "Ravenclaw",
+#                     "Gryffindor",
+#                     "Dumbledore's Army",
+#                     "Order of the Phoenix"
+#             ])
 
-    """
+#     """
 
-    houses = set()
+#     houses = set()
 
-    # Code goes here
-    the_file = open(filename)
+#     # Code goes here
+#     the_file = open(filename)
 
-    for line in the_file:
-        line = line.rstrip()
-        data = line.split("|")
+#     for line in the_file:
+#         line = line.rstrip()
+#         hb_data = line.split("|")
         
-        if data[2] != "":
-            houses.add(data[2])
+#         if hb_data[2] != "":
+#             houses.add(hb_data[2])
 
-    return houses
+#     return houses
 
 
 
 def sort_by_cohort(filename):
     """TODO: Sort students by cohort.
 
-    Iterates over the data to create a list for each cohort, ordering students
+    Iterates over the hb_data to create a list for each cohort, ordering students
     alphabetically by first name and tas separately. Returns list of lists.
 
         ex. winter_15 = ["alice tsao", "amanda gilmore", "anne vetto", "..." ]
@@ -49,13 +49,37 @@ def sort_by_cohort(filename):
 
     # Code goes here
 
-    return all_students
+    the_file = open(filename)
+
+    for line in the_file:
+        line = line.rstrip()
+        hb_data = line.split("|")
+
+        cohort = hb_data[4]
+
+        if cohort == "Spring 2015":
+            spring_15.append(line)
+        elif cohort == "Summer 2015":
+            summer_15.append(line + "/n")
+        elif hb_data == "Winter 2015":
+            winter_15.append(line)
+        else:
+            if cohort == "TA":
+                tas.append(line)
+    
+    all_students = winter_15 + spring_15 + summer_15
+    all_students.sort()
+
+
+    print summer_15
+    
+    #print all_students
 
 
 def students_by_house(filename):
     """TODO: Sort students by house.
 
-    Iterate over the data to create a list for each house, and sort students
+    Iterate over the hb_data to create a list for each house, and sort students
     into their appropriate houses by last name. Sort TAs into a list called "tas"
     and instructors in to a list called "instructors".
     Return all lists in one list of lists.
@@ -88,10 +112,10 @@ def students_by_house(filename):
 
 
 def all_students_tuple_list(filename):
-    """TODO: Create a list of tuples of student data.
+    """TODO: Create a list of tuples of student hb_data.
 
-    Iterates over the data to create a big list of tuples that individually
-    hold all the data for each person. (full_name, house, advisor, cohort)
+    Iterates over the hb_data to create a big list of tuples that individually
+    hold all the hb_data for each person. (full_name, house, advisor, cohort)
         ex. all_people = [
                 ("Alice Tsao", "Slytherin", "Kristen", "Winter 2015"),
                 ("Amanda Gilmore", "Hufflepuff", "Meggie", "Winter 2015"),
@@ -125,7 +149,7 @@ def find_cohort_by_student_name(student_list):
 def find_name_duplicates(filename):
     """TODO: Using set operations, make a set of student first names that have duplicates.
 
-    Iterates over the data to find any first names that exist across multiple cohorts.
+    Iterates over the hb_data to find any first names that exist across multiple cohorts.
     Uses set operations (set math) to create a set of these names.
     NOTE: Do not include staff -- or do, if you want a greater challenge.
 
@@ -157,11 +181,11 @@ def find_house_members_by_student_name(student_list):
 
 # Here is some useful code to run these functions!
 
-print unique_houses("cohort_data.txt")
-# print sort_by_cohort("cohort_data.txt")
-# print students_by_house("cohort_data.txt")
-# all_students_data = all_students_tuple_list("cohort_data.txt")
-# print all_students_data
-# find_cohort_by_student_name(all_students_data)
-# print find_name_duplicates("cohort_data.txt")
-# find_house_members_by_student_name(all_students_data)
+# print unique_houses("cohort_data.txt")
+print sort_by_cohort("cohort_data.txt")
+# print students_by_house("cohort_hb_data.txt")
+# all_students_hb_data = all_students_tuple_list("cohort_hb_data.txt")
+# print all_students_hb_data
+# find_cohort_by_student_name(all_students_hb_data)
+# print find_name_duplicates("cohort_hb_data.txt")
+# find_house_members_by_student_name(all_students_hb_data)
