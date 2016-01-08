@@ -30,50 +30,47 @@
 
 
 
-def sort_by_cohort(filename):
-    """TODO: Sort students by cohort.
+# def sort_by_cohort(filename):
+#     """TODO: Sort students by cohort.
 
-    Iterates over the hb_data to create a list for each cohort, ordering students
-    alphabetically by first name and tas separately. Returns list of lists.
+#     Iterates over the hb_data to create a list for each cohort, ordering students
+#     alphabetically by first name and tas separately. Returns list of lists.
 
-        ex. winter_15 = ["alice tsao", "amanda gilmore", "anne vetto", "..." ]
-        ex. all_students = [winter_15, spring_15, summer_15, tas]
+#         ex. winter_15 = ["alice tsao", "amanda gilmore", "anne vetto", "..." ]
+#         ex. all_students = [winter_15, spring_15, summer_15, tas]
 
-    """
+#     """
 
-    all_students = []
-    winter_15 = []
-    spring_15 = []
-    summer_15 = []
-    tas = []
+#     all_students = []
+#     winter_15 = []
+#     spring_15 = []
+#     summer_15 = []
+#     tas = []
 
-    # Code goes here
+#     # Code goes here
 
-    the_file = open(filename)
+#     the_file = open(filename)
 
-    for line in the_file:
-        line = line.rstrip()
-        hb_data = line.split("|")
+#     for line in the_file:
+#         line = line.rstrip()
+#         hb_data = line.split("|")
 
-        cohort = hb_data[4]
+#         cohort = hb_data[4]
 
-        if cohort == "Spring 2015":
-            spring_15.append(line)
-        elif cohort == "Summer 2015":
-            summer_15.append(line + "/n")
-        elif hb_data == "Winter 2015":
-            winter_15.append(line)
-        else:
-            if cohort == "TA":
-                tas.append(line)
+#         if cohort == "Spring 2015":
+#             spring_15.append(line)
+#         elif cohort == "Summer 2015":
+#             summer_15.append(line)
+#         elif hb_data == "Winter 2015":
+#             winter_15.append(line)
+#         else:
+#             if cohort == "TA":
+#                 tas.append(line)
     
-    all_students = winter_15 + spring_15 + summer_15
-    all_students.sort()
+#     all_students = winter_15 + spring_15 + summer_15
+#     all_students.sort()
 
-
-    print summer_15
-    
-    #print all_students
+#     return all_students
 
 
 def students_by_house(filename):
@@ -107,8 +104,22 @@ def students_by_house(filename):
     instructors = []
 
     # Code goes here
+    the_file = open(filename)
+    for line in the_file:
+        line = line.rstrip()
+        hb_data = line.split("|")
+#sort by last name
 
-    return all_students
+        cohort = hb_data[4]
+
+        if cohort == "I":
+            instructors.append(line)
+        elif cohort == "TA":
+            tas.append(line)
+        else:
+            all_students.append(line)
+
+    print tas
 
 
 def all_students_tuple_list(filename):
@@ -182,8 +193,8 @@ def find_house_members_by_student_name(student_list):
 # Here is some useful code to run these functions!
 
 # print unique_houses("cohort_data.txt")
-print sort_by_cohort("cohort_data.txt")
-# print students_by_house("cohort_hb_data.txt")
+# print sort_by_cohort("cohort_data.txt")
+print students_by_house("cohort_data.txt")
 # all_students_hb_data = all_students_tuple_list("cohort_hb_data.txt")
 # print all_students_hb_data
 # find_cohort_by_student_name(all_students_hb_data)
